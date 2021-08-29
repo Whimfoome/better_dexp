@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <object class="GtkApplicationWindow" id="window">
+    <property name="title" translatable="yes">Better Desktop Experience</property>
+    <property name="default-width">320</property>
+    <property name="default-height">240</property>
+    <child>
+      <object class="GtkBox">
+        <child>
+          <object class="GtkBox" id="container">
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="hexpand">1</property>
+            <property name="vexpand">1</property>
+            <property name="orientation">vertical</property>
+            <property name="spacing">9</property>
+            <child>
+              <object class="GtkButton" id="but1">
+                <property name="label" translatable="yes">Better Theme</property>
+                <property name="focusable">1</property>
+                <property name="receives-default">1</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="but2">
+                <property name="label" translatable="yes">Better Extensions</property>
+                <property name="focusable">1</property>
+                <property name="receives-default">1</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="but3">
+                <property name="label" translatable="yes">Better Font Rendering</property>
+                <property name="focusable">1</property>
+                <property name="receives-default">1</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="label" translatable="yes">when done, restart :)</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="hexpand">1</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkLabel" id="text">
+                <property name="hexpand">1</property>
+                <property name="vexpand">1</property>
+                <property name="label" translatable="yes">Prerequsites:
+
+gnome-shell
+gnome-tweaks
+gnome-menus</property>
+                <property name="use-markup">1</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
