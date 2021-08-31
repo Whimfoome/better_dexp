@@ -7,3 +7,4 @@ edition = "2018"
 
 [dependencies]
 gtk = { version = "0.2", package = "gtk4" }
+ureq = "2.2.0"
