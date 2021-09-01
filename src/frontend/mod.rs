@@ -1,6 +1,8 @@
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow, Builder, Button};
 
+use crate::better_theme as better_theme;
+
 pub fn main() {
     let application = Application::new(
         Some("org.better_dexp.whimfoome"),
@@ -22,6 +24,7 @@ fn build_ui(application: &Application) {
     let font_but: Button = builder.object("but3").expect("Couldn't get button");
 
     theme_but.connect_clicked(move |_| {
+        better_theme::main();
         println!("Clicked Theme Button");
     });
 

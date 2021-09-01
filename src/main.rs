@@ -1,13 +1,18 @@
 mod frontend;
-use ureq;
+mod extension_download;
+mod better_theme;
 
 fn main() {
-    mytest();
+    extension_download::main();
     frontend::main();
 }
 
-fn mytest() -> Result<(), ureq::Error> {
-    let body: String = ureq::get("https://extensions.gnome.org/extension/1160/dash-to-panel/").call()?.into_string()?;
-    println!("{}", body);
-    Ok(())
-}
+// match return_html("https://extensions.gnome.org/extension/1160/dash-to-panel/") {
+//     Ok(html) => println!("html {}", html),
+//     Err(_) => println!("dsad"),
+// }
+
+// fn return_html(url: &str) -> Result<String, ureq::Error> {
+//     let html_str: String = ureq::get(url).call()?.into_string()?;
+//     Ok(html_str)
+// }
