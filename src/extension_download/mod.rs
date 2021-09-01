@@ -4,43 +4,39 @@
 // 2890 - Tray Icons Reloaded
 // https://extensions.gnome.org
 
-use serde_json::Value;
+use std::process::Command;
+mod download;
+use download::*;
 
+enum ExtID {
+    DashToPanel = 1160,
+    ArcMenu = 3628,
+    DeskIconsNG = 2087,
+    TrayIcons = 2890,
+}
 
 pub fn main() {
-    let mut hello = String::from("https://extensions.gnome.org/extension-info/?pk=");
-    hello.push_str("1160");
-    hello.push_str("&shell_version=");
-    hello.push_str("40");
+    let shell_version = get_shell_version();
 
-    println!("{}", hello);
+    download_extension(ExtID::DashToPanel as i32, &shell_version);
+    download_extension(ExtID::ArcMenu as i32, &shell_version);
+    download_extension(ExtID::DeskIconsNG as i32, &shell_version);
+    download_extension(ExtID::TrayIcons as i32, &shell_version);
+}
 
-    match return_json(&hello) {
-        Ok(json) => {
-            let json_string: String = json["download_url"].to_string();
-            
-            // Trim the Quotes
-            let mut json_string = json_string.chars();
-            json_string.next();
-            json_string.next_back();
-            let json_string = json_string.as_str();
+fn get_shell_version() -> String {
+    let shell_version = Command::new("gnome-shell").arg("--version").output().expect("Couldn't get Shell Version");
+    let shell_version = shell_version.stdout;
+    let shell_version = String::from_utf8(shell_version).unwrap();
+    let mut shell_version = shell_version.chars();
 
-            let mut download_link = String::from("https://extensions.gnome.org");
-            download_link.push_str(json_string);
-
-            println!("{}", download_link);
-        },
-        Err(_) => println!("Error"),
+    let mut i = 0;
+    while i < 12 {
+        shell_version.next();
+        i += 1;
     }
-}
 
-fn return_html(url: &str) -> Result<String, ureq::Error> {
-    let html_str: String = ureq::get(url).call()?.into_string()?;
+    let shell_version = shell_version.as_str();
 
-    Ok(html_str)
-}
-
-fn return_json(url: &str) -> serde_json::Result<Value> {
-    let my_json: Value = serde_json::from_str(&return_html(url).unwrap()).unwrap();
-    Ok(my_json)
+    return shell_version.to_owned();
 }

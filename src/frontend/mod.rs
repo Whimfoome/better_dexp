@@ -2,6 +2,7 @@ use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow, Builder, Button};
 
 use crate::better_theme as better_theme;
+use crate::extension_download as extension_download;
 
 pub fn main() {
     let application = Application::new(
@@ -29,6 +30,7 @@ fn build_ui(application: &Application) {
     });
 
     ext_but.connect_clicked(move |_| {
+        extension_download::main();
         println!("Clicked Extensions Button");
     });
 

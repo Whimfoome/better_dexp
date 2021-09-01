@@ -13,7 +13,7 @@ Tired of having the best feeling DE with the worst defaults? This app is for you
   - ArcMenu
   - Desktop Icons NG
   - Tray Icons
-  - _With the best defaults_
+  - _With sensible defaults_
 - [Font Rendering](https://wiki.manjaro.org/index.php/Improve_Font_Rendering)
   - Additionally, I recommend installing `ttf-ms-fonts`, `ttf-tahoma`, `ttf-vista-fonts`
 
@@ -22,6 +22,7 @@ Tired of having the best feeling DE with the worst defaults? This app is for you
 - gnome-shell
 - gnome-tweaks
 - gnome-menus
+- wget
 
 ## How To Use
 - Download the executable and run
