@@ -4,6 +4,7 @@ pub fn main() {
     dark_theme();
     no_hot_corner();
     minimize_titlebar();
+    no_mouse_accel();
 }
 
 fn dark_theme() {
@@ -32,6 +33,16 @@ fn minimize_titlebar() {
         .arg("org.gnome.desktop.wm.preferences")
         .arg("button-layout")
         .arg("'appmenu:minimize,close'")
+        .output()
+        .expect("Failed");
+}
+
+fn no_mouse_accel() {
+    Command::new("gsettings")
+        .arg("set")
+        .arg("org.gnome.desktop.peripherals.mouse")
+        .arg("accel-profile")
+        .arg("'flat'")
         .output()
         .expect("Failed");
 }

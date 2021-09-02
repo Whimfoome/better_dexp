@@ -51,11 +51,11 @@
               <object class="GtkLabel" id="text">
                 <property name="hexpand">1</property>
                 <property name="vexpand">1</property>
-                <property name="label" translatable="yes">Prerequsites:
+                <property name="label" translatable="yes">You need:
 
 gnome-shell
-gnome-tweaks
-gnome-menus</property>
+gnome-menus*
+wget</property>
                 <property name="use-markup">1</property>
               </object>
             </child>
