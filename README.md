@@ -20,6 +20,7 @@ Tired of having the best feeling DE with the worst defaults? This app is for you
 
 
 ## You need
+- gtk4 support?
 - gnome-shell
 - gnome-menus*
 - wget
@@ -28,3 +29,6 @@ Tired of having the best feeling DE with the worst defaults? This app is for you
 - Download the executable and run
 - Click the 3 buttons
 - Restart OS
+
+## Credits
+- Thank god [this script by cyfrost](https://github.com/cyfrost/install-gnome-extensions) exists, I found out how to build the download link for extensions properly :)
