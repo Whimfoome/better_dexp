@@ -13,15 +13,51 @@ enum ExtID {
     ArcMenu = 3628,
     DeskIconsNG = 2087,
     TrayIcons = 2890,
+    TilingAssist = 3733,
 }
 
 pub fn main() {
+    Command::new("mkdir").arg("-p").arg("download-extensions").spawn().expect("Failed");
+
+    wait_download();
+
+    install_extensions();
+}
+
+
+fn wait_download() {
     let shell_version = get_shell_version();
 
-    download_extension(ExtID::DashToPanel as i32, &shell_version);
-    download_extension(ExtID::ArcMenu as i32, &shell_version);
-    download_extension(ExtID::DeskIconsNG as i32, &shell_version);
-    download_extension(ExtID::TrayIcons as i32, &shell_version);
+    let mut dash_proc = download_extension(ExtID::DashToPanel as i32, &shell_version);
+    let mut arc_proc = download_extension(ExtID::ArcMenu as i32, &shell_version);
+    let mut desk_proc = download_extension(ExtID::DeskIconsNG as i32, &shell_version);
+    let mut tray_proc = download_extension(ExtID::TrayIcons as i32, &shell_version);
+    let mut tile_proc = download_extension(ExtID::TilingAssist as i32, &shell_version);
+
+    match dash_proc.wait() {
+        Ok(status) => println!("Finished downloading DashToPanel: {}", status),
+        Err(e) => print!("Error: {}", e),
+    }
+
+    match arc_proc.wait() {
+        Ok(status) => println!("Finished downloading ArcMenu: {}", status),
+        Err(e) => print!("Error: {}", e),
+    }
+
+    match desk_proc.wait() {
+        Ok(status) => println!("Finished downloading DeskIconsNG: {}", status),
+        Err(e) => print!("Error: {}", e),
+    }
+
+    match tray_proc.wait() {
+        Ok(status) => println!("Finished downloading TrayIcons: {}", status),
+        Err(e) => print!("Error: {}", e),
+    }
+
+    match tile_proc.wait() {
+        Ok(status) => println!("Finished downloading TilingAssist: {}", status),
+        Err(e) => print!("Error: {}", e),
+    }
 }
 
 fn get_shell_version() -> String {
@@ -39,4 +75,20 @@ fn get_shell_version() -> String {
     let shell_version = shell_version.as_str();
 
     return shell_version.to_owned();
+}
+
+
+fn install_extensions() {
+    install_extension(ExtID::DashToPanel as i32);
+    install_extension(ExtID::ArcMenu as i32);
+    install_extension(ExtID::DeskIconsNG as i32);
+    install_extension(ExtID::TrayIcons as i32);
+    install_extension(ExtID::TilingAssist as i32);
+
+    // Ask to logout
+    Command::new("gnome-session-quit").output().expect("Couldn't Ask to Logout");
+}
+
+fn install_extension(ext_id: i32) {
+    Command::new("gnome-extensions").arg("install").arg(format!("./download-extensions/{}.zip", ext_id)).output().expect("Couldn't Install Extension");
 }

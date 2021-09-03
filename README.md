@@ -14,6 +14,7 @@ Tired of having the best feeling DE with the worst defaults? This app is for you
   - [ArcMenu](https://gitlab.com/arcmenu/ArcMenu)
   - [Desktop Icons NG](https://gitlab.com/rastersoft/desktop-icons-ng)
   - [Tray Icons Reloaded](https://github.com/MartinPL/Tray-Icons-Reloaded)
+  - [Tiling Assistant](https://github.com/Leleat/Tiling-Assistant)
   - _With sensible defaults_
 - [Font Rendering](https://wiki.manjaro.org/index.php/Improve_Font_Rendering)
   - Additionally, I recommend installing `ttf-ms-fonts`, `ttf-tahoma`, `ttf-vista-fonts`

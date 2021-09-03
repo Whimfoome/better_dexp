@@ -22,20 +22,18 @@ fn build_ui(application: &Application) {
 
     let theme_but: Button = builder.object("but1").expect("Couldn't get button");
     let ext_but: Button = builder.object("but2").expect("Couldn't get button");
-    let font_but: Button = builder.object("but3").expect("Couldn't get button");
+    let apply_but: Button = builder.object("but3").expect("Couldn't get button");
 
     theme_but.connect_clicked(move |_| {
         better_theme::main();
-        println!("Clicked Theme Button");
     });
 
     ext_but.connect_clicked(move |_| {
         extension_download::main();
-        println!("Clicked Extensions Button");
     });
 
-    font_but.connect_clicked(move |_| {
-        println!("Clicked Font Button");
+    apply_but.connect_clicked(move |_| {
+        //println!("Clicked Font Button");
     });
 
     window.show();
