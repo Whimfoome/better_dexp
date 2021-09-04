@@ -1,23 +1,38 @@
-// 1160 - Dash To Panel
-// 3628 - ArcMenu
-// 2087 - Desktop Icons NG
-// 2890 - Tray Icons Reloaded
-// https://extensions.gnome.org
+// https://extensions.gnome.org (Extensions ID's and UUID's:)
+// - 1160 - Dash To Panel - dash-to-panel@jderose9.github.com
+// - 3628 - ArcMenu - arcmenu@arcmenu.com
+// - 2087 - Desktop Icons NG - ding@rastersoft.com
+// - 2890 - Tray Icons Reloaded - trayIconsReloaded@selfmade.pl
+// - 3733 - Tiling Assistant - tiling-assistant@leleat-on-github
 
 use std::process::Command;
+use lazy_static::lazy_static;
 mod download;
+mod configure;
 use download::*;
 
-enum ExtID {
-    DashToPanel = 1160,
-    ArcMenu = 3628,
-    DeskIconsNG = 2087,
-    TrayIcons = 2890,
-    TilingAssist = 3733,
+struct Extension {
+    ext_id: i32,
+    uuid: String,
 }
 
-pub fn main() {
-    Command::new("mkdir").arg("-p").arg("download-extensions").spawn().expect("Failed");
+impl Extension {
+    fn new(ext_id: i32, uuid: String) -> Extension {
+        Extension { ext_id: ext_id, uuid: uuid }
+    }
+}
+
+lazy_static! {
+    static ref DASH_TO_PANEL: Extension = Extension::new(1160, "dash-to-panel@jderose9.github.com".to_owned());
+    static ref ARC_MENU: Extension = Extension::new(3628, "arcmenu@arcmenu.com".to_owned());
+    static ref DESK_ICONS_NG: Extension = Extension::new(2087, "ding@rastersoft.com".to_owned());
+    static ref TRAY_ICONS: Extension = Extension::new(2890, "trayIconsReloaded@selfmade.pl".to_owned());
+    static ref TILING_ASSIST: Extension = Extension::new(3733, "tiling-assistant@leleat-on-github".to_owned());
+}
+
+
+pub fn download_install() {
+    Command::new("mkdir").arg("-p").arg("download-extensions").spawn().expect("Failed to make directory");
 
     wait_download();
 
@@ -28,11 +43,11 @@ pub fn main() {
 fn wait_download() {
     let shell_version = get_shell_version();
 
-    let mut dash_proc = download_extension(ExtID::DashToPanel as i32, &shell_version);
-    let mut arc_proc = download_extension(ExtID::ArcMenu as i32, &shell_version);
-    let mut desk_proc = download_extension(ExtID::DeskIconsNG as i32, &shell_version);
-    let mut tray_proc = download_extension(ExtID::TrayIcons as i32, &shell_version);
-    let mut tile_proc = download_extension(ExtID::TilingAssist as i32, &shell_version);
+    let mut dash_proc = download_extension(DASH_TO_PANEL.ext_id, &shell_version);
+    let mut arc_proc = download_extension(ARC_MENU.ext_id, &shell_version);
+    let mut desk_proc = download_extension(DESK_ICONS_NG.ext_id, &shell_version);
+    let mut tray_proc = download_extension(TRAY_ICONS.ext_id, &shell_version);
+    let mut tile_proc = download_extension(TILING_ASSIST.ext_id, &shell_version);
 
     match dash_proc.wait() {
         Ok(status) => println!("Finished downloading DashToPanel: {}", status),
@@ -79,11 +94,11 @@ fn get_shell_version() -> String {
 
 
 fn install_extensions() {
-    install_extension(ExtID::DashToPanel as i32);
-    install_extension(ExtID::ArcMenu as i32);
-    install_extension(ExtID::DeskIconsNG as i32);
-    install_extension(ExtID::TrayIcons as i32);
-    install_extension(ExtID::TilingAssist as i32);
+    install_extension(DASH_TO_PANEL.ext_id);
+    install_extension(ARC_MENU.ext_id);
+    install_extension(DESK_ICONS_NG.ext_id);
+    install_extension(TRAY_ICONS.ext_id);
+    install_extension(TILING_ASSIST.ext_id);
 
     // Ask to logout
     Command::new("gnome-session-quit").output().expect("Couldn't Ask to Logout");
@@ -91,4 +106,21 @@ fn install_extensions() {
 
 fn install_extension(ext_id: i32) {
     Command::new("gnome-extensions").arg("install").arg(format!("./download-extensions/{}.zip", ext_id)).output().expect("Couldn't Install Extension");
+}
+
+
+pub fn config_extensions() {
+    configure::apply_dash_to_dock();
+    configure::apply_arc_menu();
+    configure::apply_ding();
+
+    enable_extensions();
+}
+
+fn enable_extensions() {
+    Command::new("gnome-extensions").arg("enable").arg(&DASH_TO_PANEL.uuid).output().expect("Couldn't Enable Extension");
+    Command::new("gnome-extensions").arg("enable").arg(&ARC_MENU.uuid).output().expect("Couldn't Enable Extension");
+    Command::new("gnome-extensions").arg("enable").arg(&DESK_ICONS_NG.uuid).output().expect("Couldn't Enable Extension");
+    Command::new("gnome-extensions").arg("enable").arg(&TRAY_ICONS.uuid).output().expect("Couldn't Enable Extension");
+    Command::new("gnome-extensions").arg("enable").arg(&TILING_ASSIST.uuid).output().expect("Couldn't Enable Extension");
 }

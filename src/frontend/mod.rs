@@ -29,11 +29,11 @@ fn build_ui(application: &Application) {
     });
 
     ext_but.connect_clicked(move |_| {
-        extension_download::main();
+        extension_download::download_install();
     });
 
     apply_but.connect_clicked(move |_| {
-        //println!("Clicked Font Button");
+        extension_download::config_extensions();
     });
 
     window.show();
