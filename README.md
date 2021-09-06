@@ -16,8 +16,7 @@ Tired of having the best feeling DE with the worst defaults? This app is for you
   - [Tray Icons Reloaded](https://github.com/MartinPL/Tray-Icons-Reloaded)
   - [Tiling Assistant](https://github.com/Leleat/Tiling-Assistant)
   - _With sensible defaults_
-- [Font Rendering](https://wiki.manjaro.org/index.php/Improve_Font_Rendering)
-  - Additionally, I recommend installing `ttf-ms-fonts`, `ttf-tahoma`, `ttf-vista-fonts`
+- [Other things I do with my Arch Setup](https://gist.github.com/Whimfoome/e033dd6bf4fc155e9ccfbdd60ef1b9a2)
 
 
 ## You need
@@ -32,4 +31,5 @@ Tired of having the best feeling DE with the worst defaults? This app is for you
 - Restart OS
 
 ## Credits
-- Thank god [this script by cyfrost](https://github.com/cyfrost/install-gnome-extensions) exists, I found out how to build the download link for extensions properly :)
+- Thanks [this script by cyfrost](https://github.com/cyfrost/install-gnome-extensions) exists, I found out how to build the download link for extensions properly :)
+- Icon App from [Reversal Icon Theme](https://github.com/yeyushengfan258/Reversal-icon-theme), exact name - gnome-panel-launcher

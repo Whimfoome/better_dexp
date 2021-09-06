@@ -57,14 +57,6 @@ pub fn apply_dash_to_dock() {
         .arg("4")
         .spawn()
         .expect("Failed");
-    
-    // Lock Taskbar
-    Command::new("dconf")
-        .arg("write")
-        .arg("/org/gnome/shell/extensions/dash-to-panel/taskbar-locked")
-        .arg("true")
-        .spawn()
-        .expect("Failed");
 }
 
 pub fn apply_arc_menu() {
