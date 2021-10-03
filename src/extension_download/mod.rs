@@ -113,6 +113,7 @@ pub fn config_extensions() {
     configure::apply_dash_to_dock();
     configure::apply_arc_menu();
     configure::apply_ding();
+    configure::apply_tray();
 
     enable_extensions();
 }

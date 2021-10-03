@@ -126,3 +126,13 @@ pub fn apply_ding() {
         .spawn()
         .expect("Failed");
 }
+
+pub fn apply_tray() {
+    // Tray Icons Padding
+    Command::new("dconf")
+        .arg("write")
+        .arg("/org/gnome/shell/extensions/trayIconsReloaded/icon-padding-horizontal")
+        .arg("4")
+        .spawn()
+        .expect("Failed");
+}

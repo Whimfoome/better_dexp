@@ -22,14 +22,24 @@ Tired of having the best feeling DE with the worst defaults? This app is for you
 ## You need
 - gtk4 support?
 - gnome-shell
-- gnome-menus*
+- gnome-menus* (for ArcMenu to work)
 - wget
 
 ## How To Use
-- Download the executable and run
-- Click the 3 buttons
-- Restart OS
+- Download the `.AppImage` from [Releases](https://github.com/Whimfoome/better_dexp/releases)
+- Allow Execution and Open
+- Click **Better Theme** and **Install Extensions**. You will be asked to Log Out, do it (this will close all your running apps!) 
+- Open the app again and click **Apply Extensions Configs**
+
+## How to Build
+- You need Rust installed, recomended from [RustUp](https://www.rust-lang.org/tools/install)
+- Clone this repo `git clone https://github.com/Whimfoome/better_dexp.git` && `cd better_dexp`
+- `cargo build --release`
+### Build with AppImage
+- You need [AppImageKit](https://github.com/AppImage/AppImageKit) (`yay -S appimagetool-bin`)
+- You need [Cargo-AppImage](https://github.com/StratusFearMe21/cargo-appimage) (`cargo install cargo-appimage`)
+- To build it, just run `cargo appimage` in the project directory
 
 ## Credits
-- Thanks [this script by cyfrost](https://github.com/cyfrost/install-gnome-extensions) exists, I found out how to build the download link for extensions properly :)
+- Thanks to [this script by cyfrost](https://github.com/cyfrost/install-gnome-extensions), I found out how to build the download link for extensions properly :)
 - Icon App from [Reversal Icon Theme](https://github.com/yeyushengfan258/Reversal-icon-theme), exact name - gnome-panel-launcher
